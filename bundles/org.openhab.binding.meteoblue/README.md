@@ -90,11 +90,14 @@ Each of the following channels is supported in all of the channel groups.
 
 ## Image Icons
 
-To show the weather image icons in the UI, the [image files](https://content.meteoblue.com/hu/service-specifications/standards/symbols-and-pictograms) need to be downloaded and installed in the `conf/icons/classic` folder.
+To show the weather image icons in the UI, the [image files](https://content.meteoblue.com/en/specifications/standards/symbols-and-pictograms) need to be downloaded and installed in the `$OPENHAB_CONF/icons/classic` folder.
+
+To check the env $OPENHAB_CONF do: $ pwd $OPENHAB_CONF
 
 In the "Downloads" section at the bottom of the page, download the file named `meteoblue_weather_pictograms_<date>.zip`.
 
-The files to extract from the zip file and install in the folder will be named "iday*.png" or "iday*.svg".
+The files to extract from the zip file and install in the folder will be named "iday-*.png". 
+Files unzipped must be renamed from the original name to "iday-*.png" in order to Forecast.java works, if not the icon fails and will not loaded.
 
 
 ## Full Example
@@ -127,8 +130,8 @@ String todayPCode    "Pictocode [%d]"  <iday>  (weatherDay0)  {channel="meteoblu
 String todayCond     "Condition [%s]"  <iday>  (weatherDay0)  {channel="meteoblue:weather:metBridge:A51:forecastToday#condition"}
 Image todayIcon     "Icon [%s]"       (weatherDay0)  {channel="meteoblue:weather:metBridge:A51:forecastToday#icon"}
 Number todayUV       "UV Index [%d]"  (weatherDay0)  {channel="meteoblue:weather:metBridge:A51:forecastToday#UVIndex"}
-Number:Temperature  todayTempL  "Low Temp [%.2f °F]"   <temperature>  (weatherDay0)  {channel="meteoblue:weather:metBridge:A51:forecastToday#minTemperature"}
-Number:Temperature  todayTempH  "High Temp [%.2f °F]"  <temperature>  (weatherDay0)  {channel="meteoblue:weather:metBridge:A51:forecastToday#maxTemperature"}
+Number:Temperature  todayTempL  "Low Temp [%.2f Â°F]"   <temperature>  (weatherDay0)  {channel="meteoblue:weather:metBridge:A51:forecastToday#minTemperature"}
+Number:Temperature  todayTempH  "High Temp [%.2f Â°F]"  <temperature>  (weatherDay0)  {channel="meteoblue:weather:metBridge:A51:forecastToday#maxTemperature"}
 Number todayHumM     "Mean Humidity [%d %%]"  <humidity>  (weatherDay0)  {channel="meteoblue:weather:metBridge:A51:forecastToday#relativeHumidityMean"}
 Number todayPrecPr   "Prec. Prob. [%d %%]"  (weatherDay0)  {channel="meteoblue:weather:metBridge:A51:forecastToday#precipitationProbability"}
 Number:Length todayPrec     "Total Prec. [%.2f in]"  <rain>  (weatherDay0)  {channel="meteoblue:weather:metBridge:A51:forecastToday#precipitation"}
